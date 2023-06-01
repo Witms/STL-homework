@@ -1,8 +1,8 @@
-#include "Users.h"
+п»ї#include "Users.h"
 
 namespace aiafpb1
 {
-	// приведение параметров к начальным "нулевым" значениям
+	// РїСЂРёРІРµРґРµРЅРёРµ РїР°СЂР°РјРµС‚СЂРѕРІ Рє РЅР°С‡Р°Р»СЊРЅС‹Рј "РЅСѓР»РµРІС‹Рј" Р·РЅР°С‡РµРЅРёСЏРј
 	void User::clear()
 	{
 		this->log.clear();
@@ -11,7 +11,7 @@ namespace aiafpb1
 		this->last_seen.clear();
 	}
 
-	// "полное" имя пользователя в формате (имя--логин) для возможности идентификации, т.к. имена пользователей могут совпадать
+	// "РїРѕР»РЅРѕРµ" РёРјСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ С„РѕСЂРјР°С‚Рµ (РёРјСЏ--Р»РѕРіРёРЅ) РґР»СЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё РёРґРµРЅС‚РёС„РёРєР°С†РёРё, С‚.Рє. РёРјРµРЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РјРѕРіСѓС‚ СЃРѕРІРїР°РґР°С‚СЊ
 	std::string User::fullName() const { return (name + "--" + log); }
 
 	User& User::operator=(const User& u)
@@ -26,46 +26,46 @@ namespace aiafpb1
 		return *this;
 	}
 
-	// вывод в поток данных пользователя, используется для проверки при регистрации пользователя
+	// РІС‹РІРѕРґ РІ РїРѕС‚РѕРє РґР°РЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ, РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ РїСЂРѕРІРµСЂРєРё РїСЂРё СЂРµРіРёСЃС‚СЂР°С†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	std::ostream& operator<<(std::ostream& out, const User& u)
 	{
-		out << " логин: " << u.log << std::endl;
-		out << "пароль: " << u.pword << std::endl;
-		out << "   имя: " << u.name << std::endl;
+		out << " Р»РѕРіРёРЅ: " << u.log << std::endl;
+		out << "РїР°СЂРѕР»СЊ: " << u.pword << std::endl;
+		out << "   РёРјСЏ: " << u.name << std::endl;
 		return out;
 	}
 
 	Users::Users() {}
 	Users::~Users() {}
 
-	// добавление пользователя в массив
+	// РґРѕР±Р°РІР»РµРЅРёРµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РІ РјР°СЃСЃРёРІ
 	size_t Users::add(const User& u)
 	{
 		m_users.add_last(u);
 		return m_users.size() - 1;
 	}
 
-	// фиксация времени просмотра пользователем общего чата
+	// С„РёРєСЃР°С†РёСЏ РІСЂРµРјРµРЅРё РїСЂРѕСЃРјРѕС‚СЂР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµРј РѕР±С‰РµРіРѕ С‡Р°С‚Р°
 	void Users::fixTime(size_t index) { m_users[index].last_seen.renew(); }
 
-	// предикат для поиска пользователя по имени (через User& c), передается по указателю в TArray.tryGetOne через функцию nameFound (см. ниже)
+	// РїСЂРµРґРёРєР°С‚ РґР»СЏ РїРѕРёСЃРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ РёРјРµРЅРё (С‡РµСЂРµР· User& c), РїРµСЂРµРґР°РµС‚СЃСЏ РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ РІ TArray.tryGetOne С‡РµСЂРµР· С„СѓРЅРєС†РёСЋ nameFound (СЃРј. РЅРёР¶Рµ)
 	bool Users::selectByName(const User& u, User& c) { return (u.log == c.log || u.name == c.name); }
 
-	// предикат для поиска пользователя по логину (через User& c), передается по указателю в TArray.tryGetOne через функцию logFound (см. ниже)
+	// РїСЂРµРґРёРєР°С‚ РґР»СЏ РїРѕРёСЃРєР° РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ РїРѕ Р»РѕРіРёРЅСѓ (С‡РµСЂРµР· User& c), РїРµСЂРµРґР°РµС‚СЃСЏ РїРѕ СѓРєР°Р·Р°С‚РµР»СЋ РІ TArray.tryGetOne С‡РµСЂРµР· С„СѓРЅРєС†РёСЋ logFound (СЃРј. РЅРёР¶Рµ)
 	bool Users::selectByLog(const User& u, User& c) { return (u.log == c.log); }
 
 	bool Users::nameFound(User& c, size_t& i) { return m_users.tryGetOne(selectByName, c, i); }
 
 	bool Users::logFound(User& c, size_t& i) { return m_users.tryGetOne(selectByLog, c, i); }
 
-	// проверка наличия зарегистрированных пользователей
+	// РїСЂРѕРІРµСЂРєР° РЅР°Р»РёС‡РёСЏ Р·Р°СЂРµРіРёСЃС‚СЂРёСЂРѕРІР°РЅРЅС‹С… РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	bool Users::empty() const { return (m_users.size() == 0); }
 
-	// вывод списка "полных" имен пользователей
+	// РІС‹РІРѕРґ СЃРїРёСЃРєР° "РїРѕР»РЅС‹С…" РёРјРµРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№
 	std::stringstream Users::showNames() const
 	{
 		std::stringstream info;
-		info << std::endl << "Имена пользователей:" << std::endl;
+		info << std::endl << "РРјРµРЅР° РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№:" << std::endl;
 		for (size_t i = 0; i < m_users.size(); i++) { info << m_users[i].fullName() << std::endl; }
 		return info;
 	}

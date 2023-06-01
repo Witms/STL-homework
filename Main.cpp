@@ -1,10 +1,10 @@
-#include "ChatBot.h"
+п»ї#include "ChatBot.h"
 #include <Windows.h>
 #include <exception>
 
 int main()
 {
-	// подключение кодовых страниц для ввода-вывода кириллицей
+	// РїРѕРґРєР»СЋС‡РµРЅРёРµ РєРѕРґРѕРІС‹С… СЃС‚СЂР°РЅРёС† РґР»СЏ РІРІРѕРґР°-РІС‹РІРѕРґР° РєРёСЂРёР»Р»РёС†РµР№
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	bool goon = true;
@@ -15,9 +15,9 @@ int main()
 	{
 		try
 		{
-			std::cout << std::endl << "Введите команду: ";
+			std::cout << std::endl << "Р’РІРµРґРёС‚Рµ РєРѕРјР°РЅРґСѓ: ";
 			std::cin >> command;
-			std::cout << std::endl << "Вы ввели команду: " << command << std::endl;
+			std::cout << std::endl << "Р’С‹ РІРІРµР»Рё РєРѕРјР°РЅРґСѓ: " << command << std::endl;
 			std::cout << cb.ApplyCommand(goon, command).str();
 		}
 		catch (const aiafpb1::TArrayException& e)
@@ -28,16 +28,16 @@ int main()
 		catch (const std::exception& e)
 		{
 			goon = false;
-			std::cerr << std::endl << "Обработано стандартное исключение:" << std::endl << e.what() << std::endl;
+			std::cerr << std::endl << "РћР±СЂР°Р±РѕС‚Р°РЅРѕ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРµ РёСЃРєР»СЋС‡РµРЅРёРµ:" << std::endl << e.what() << std::endl;
 		}
 		catch (...)
 		{
 			goon = false;
-			std::cerr << std::endl << "Обработано неизвестное исключение" << std::endl;
+			std::cerr << std::endl << "РћР±СЂР°Р±РѕС‚Р°РЅРѕ РЅРµРёР·РІРµСЃС‚РЅРѕРµ РёСЃРєР»СЋС‡РµРЅРёРµ" << std::endl;
 		}
 	}
 
-	std::cout << std::endl << "Работа программы прекращена" << std::endl;
+	std::cout << std::endl << "Р Р°Р±РѕС‚Р° РїСЂРѕРіСЂР°РјРјС‹ РїСЂРµРєСЂР°С‰РµРЅР°" << std::endl;
 	std::cin.get();
 	return 0;
 }

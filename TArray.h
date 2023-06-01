@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include <cstdint>
 #include <iomanip>
 #include <functional>
@@ -38,14 +38,13 @@ namespace aiafpb1
 		//std::function<bool(const T&, T&)> selector;
 	};
 
-	// Далее определения функций
+	// Р”Р°Р»РµРµ РѕРїСЂРµРґРµР»РµРЅРёСЏ С„СѓРЅРєС†РёР№
 
 	template <typename T>
 	TArray<T>::TArray(const size_t size)
 	{
 		if (size < 0)
 		{
-			m_data.size() = 0;
 			throw TArrayException(etype::invalid_size, __FUNCTION__);
 		}
 
@@ -74,7 +73,7 @@ namespace aiafpb1
 	}
 
 	template <typename T>
-	TArray<T>::~TArray() {  }
+	TArray<T>::~TArray() { }
 
 	template <typename T>
 	void TArray<T>::clear()
@@ -85,7 +84,7 @@ namespace aiafpb1
 	template <typename T>
 	void TArray<T>::resize(size_t tosize)
 	{
-		// изменение размера массива без сохранения данных
+		// РёР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР° Р±РµР· СЃРѕС…СЂР°РЅРµРЅРёСЏ РґР°РЅРЅС‹С…
 
 		if (tosize == m_data.size()) return;
 		if (tosize < 0) throw TArrayException(etype::invalid_size, __FUNCTION__);
@@ -97,7 +96,7 @@ namespace aiafpb1
 	template <typename T>
 	void TArray<T>::modify(size_t tosize)
 	{
-		// изменение размера массива с сохранением данных в пределах нового размера
+		// РёР·РјРµРЅРµРЅРёРµ СЂР°Р·РјРµСЂР° РјР°СЃСЃРёРІР° СЃ СЃРѕС…СЂР°РЅРµРЅРёРµРј РґР°РЅРЅС‹С… РІ РїСЂРµРґРµР»Р°С… РЅРѕРІРѕРіРѕ СЂР°Р·РјРµСЂР°
 
 		if (tosize == m_data.size()) return;
 		if (tosize < 0) throw TArrayException(etype::invalid_size, __FUNCTION__);
@@ -113,10 +112,10 @@ namespace aiafpb1
 	template <typename T>
 	void TArray<T>::insert(size_t position, T value)
 	{
-		// position: позиция в массиве для вставки - выбирается от 1 до m_data.size() + 1
+		// position: РїРѕР·РёС†РёСЏ РІ РјР°СЃСЃРёРІРµ РґР»СЏ РІСЃС‚Р°РІРєРё - РІС‹Р±РёСЂР°РµС‚СЃСЏ РѕС‚ 1 РґРѕ m_data.size() + 1
 		if (m_data.size() + 1 < position || position < 1)
 		{
-			std::string comment = "позиция для вставки может быть в пределах от 1 до значения <размер массива + 1>";
+			std::string comment = "РїРѕР·РёС†РёСЏ РґР»СЏ РІСЃС‚Р°РІРєРё РјРѕР¶РµС‚ Р±С‹С‚СЊ РІ РїСЂРµРґРµР»Р°С… РѕС‚ 1 РґРѕ Р·РЅР°С‡РµРЅРёСЏ <СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР° + 1>";
 			throw TArrayException(etype::invalid_index, __FUNCTION__, comment);
 		}
 
@@ -132,14 +131,14 @@ namespace aiafpb1
 	template <typename T>
 	void TArray<T>::remove(size_t position)
 	{
-		// position: позиция в массиве удаляемого элемента - выбирается от 1 до m_data.size()
+		// position: РїРѕР·РёС†РёСЏ РІ РјР°СЃСЃРёРІРµ СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р° - РІС‹Р±РёСЂР°РµС‚СЃСЏ РѕС‚ 1 РґРѕ m_data.size()
 		if (m_data.size() < position || position < 1)
 		{
-			std::string comment = "позиция удаляемого элемента может быть в пределах от 1 до значения <размер массива>";
+			std::string comment = "РїРѕР·РёС†РёСЏ СѓРґР°Р»СЏРµРјРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РјРѕР¶РµС‚ Р±С‹С‚СЊ РІ РїСЂРµРґРµР»Р°С… РѕС‚ 1 РґРѕ Р·РЅР°С‡РµРЅРёСЏ <СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР°>";
 			throw TArrayException(etype::invalid_index, __FUNCTION__, comment);
 		}
 
-		// удаление единственного элемента в массиве
+		// СѓРґР°Р»РµРЅРёРµ РµРґРёРЅСЃС‚РІРµРЅРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р° РІ РјР°СЃСЃРёРІРµ
 		if (m_data.size() == 1)
 		{
 			m_data.clear();
@@ -169,7 +168,7 @@ namespace aiafpb1
 		return result;
 	}
 
-	// используется std::vector для возможности работы с std::reference_wrapper<T>
+	// РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ std::vector РґР»СЏ РІРѕР·РјРѕР¶РЅРѕСЃС‚Рё СЂР°Р±РѕС‚С‹ СЃ std::reference_wrapper<T>
 	template <typename T>
 	std::vector<std::reference_wrapper<T>> TArray<T>::getSelection(std::function<bool(const T&, T&)> selector, T& comparer)
 	{

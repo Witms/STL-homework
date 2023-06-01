@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #pragma warning(disable : 4996)
 #include <chrono>
 #include <iomanip>
@@ -6,7 +6,7 @@
 
 namespace aiafpb1
 {
-	// класс используется для фиксации времени отправки сообщений
+	// РєР»Р°СЃСЃ РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ РґР»СЏ С„РёРєСЃР°С†РёРё РІСЂРµРјРµРЅРё РѕС‚РїСЂР°РІРєРё СЃРѕРѕР±С‰РµРЅРёР№
 	class  TimeData
 	{
 	private:

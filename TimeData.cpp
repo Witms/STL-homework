@@ -1,16 +1,16 @@
-#include "TimeData.h"
+п»ї#include "TimeData.h"
 
 namespace aiafpb1
 {
-	TimeData::TimeData() : m_time(std::chrono::system_clock::now()) {}	// при создании фиксируется текущее системное время
+	TimeData::TimeData() : m_time(std::chrono::system_clock::now()) {}	// РїСЂРё СЃРѕР·РґР°РЅРёРё С„РёРєСЃРёСЂСѓРµС‚СЃСЏ С‚РµРєСѓС‰РµРµ СЃРёСЃС‚РµРјРЅРѕРµ РІСЂРµРјСЏ
 	TimeData::~TimeData() {}
 
-	std::string TimeData::m_format = "%d.%m.%Y %H:%M:%S";	// задание формата вывода по умолчанию
+	std::string TimeData::m_format = "%d.%m.%Y %H:%M:%S";	// Р·Р°РґР°РЅРёРµ С„РѕСЂРјР°С‚Р° РІС‹РІРѕРґР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
-	// установка формата вывода
+	// СѓСЃС‚Р°РЅРѕРІРєР° С„РѕСЂРјР°С‚Р° РІС‹РІРѕРґР°
 	void TimeData::setFormat(const std::string& format) { TimeData::m_format = format; }
 
-	// преобразование в строку
+	// РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІ СЃС‚СЂРѕРєСѓ
 	std::string TimeData::toString() const
 	{
 		std::stringstream ss;
@@ -18,20 +18,20 @@ namespace aiafpb1
 		return ss.str();
 	}
 
-	// перезапись текущего системного времени
+	// РїРµСЂРµР·Р°РїРёСЃСЊ С‚РµРєСѓС‰РµРіРѕ СЃРёСЃС‚РµРјРЅРѕРіРѕ РІСЂРµРјРµРЅРё
 	void TimeData::renew() { m_time = std::chrono::system_clock::now(); }
 
-	// установка начального "нулевого" значения
+	// СѓСЃС‚Р°РЅРѕРІРєР° РЅР°С‡Р°Р»СЊРЅРѕРіРѕ "РЅСѓР»РµРІРѕРіРѕ" Р·РЅР°С‡РµРЅРёСЏ
 	void TimeData::clear() { m_time = std::chrono::time_point<std::chrono::system_clock>(); }
 
-	// реализация оператора присваивания
+	// СЂРµР°Р»РёР·Р°С†РёСЏ РѕРїРµСЂР°С‚РѕСЂР° РїСЂРёСЃРІР°РёРІР°РЅРёСЏ
 	TimeData& TimeData::operator=(const TimeData& t)
 	{
 		if (&t != this) { m_time = t.m_time; }
 		return *this;
 	}
 
-	// вывод в поток с преобразованием к заданному формату
+	// РІС‹РІРѕРґ РІ РїРѕС‚РѕРє СЃ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµРј Рє Р·Р°РґР°РЅРЅРѕРјСѓ С„РѕСЂРјР°С‚Сѓ
 	std::ostream& operator<<(std::ostream& out, const TimeData& t)
 	{
 		auto tt = std::chrono::system_clock::to_time_t(t.m_time);
@@ -40,7 +40,7 @@ namespace aiafpb1
 		return out;
 	}
 
-	// далее реализация операторов сравнения
+	// РґР°Р»РµРµ СЂРµР°Р»РёР·Р°С†РёСЏ РѕРїРµСЂР°С‚РѕСЂРѕРІ СЃСЂР°РІРЅРµРЅРёСЏ
 
 	bool operator==(const TimeData& t1, const TimeData& t2) { return (t1.m_time == t2.m_time); }
 

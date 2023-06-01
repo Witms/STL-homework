@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 #include "TArray.h"
 #include "TimeData.h"
 
@@ -10,7 +10,7 @@ namespace aiafpb1
 		std::string log;
 		std::string name;
 		std::string pword;
-		TimeData last_seen;	// время последнего просмотра общего чата
+		TimeData last_seen;	// РІСЂРµРјСЏ РїРѕСЃР»РµРґРЅРµРіРѕ РїСЂРѕСЃРјРѕС‚СЂР° РѕР±С‰РµРіРѕ С‡Р°С‚Р°
 
 		void clear();
 		std::string fullName() const;
@@ -21,15 +21,15 @@ namespace aiafpb1
 	class Users
 	{
 	private:
-		// вариант отсутствия пользователей при запуске программы
+		// РІР°СЂРёР°РЅС‚ РѕС‚СЃСѓС‚СЃС‚РІРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РїСЂРё Р·Р°РїСѓСЃРєРµ РїСЂРѕРіСЂР°РјРјС‹
 		//TArray<User> m_users;
 
-		// вариант наличия пользователей при запуске программы
+		// РІР°СЂРёР°РЅС‚ РЅР°Р»РёС‡РёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№ РїСЂРё Р·Р°РїСѓСЃРєРµ РїСЂРѕРіСЂР°РјРјС‹
 		TArray<User> m_users
 		{
-			{"fox", "Лена", "xof", TimeData()},
-			{"pot", "Вова", "top", TimeData()},
-			{"tin", "Толик", "nit", TimeData()}
+			{"fox", "Р›РµРЅР°", "xof", TimeData()},
+			{"pot", "Р’РѕРІР°", "top", TimeData()},
+			{"tin", "РўРѕР»РёРє", "nit", TimeData()}
 		};
 
 	public:

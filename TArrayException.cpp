@@ -1,20 +1,20 @@
-#include "TArrayException.h"
+п»ї#include "TArrayException.h"
 
 namespace aiafpb1
 {
 	const std::map<etype, std::string> TArrayException::m_message
 	{
-		{etype::empty_array, "массив является пустым"},
-		{etype::invalid_index, "неверное значение индекса"},
-		{etype::invalid_size, "размер массива не может быть задан отрицательным числом"},
-		{etype::wrong_type, "несоответствие типу элементов массива"}
+		{etype::empty_array, "РјР°СЃСЃРёРІ СЏРІР»СЏРµС‚СЃСЏ РїСѓСЃС‚С‹Рј"},
+		{etype::invalid_index, "РЅРµРІРµСЂРЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РёРЅРґРµРєСЃР°"},
+		{etype::invalid_size, "СЂР°Р·РјРµСЂ РјР°СЃСЃРёРІР° РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р·Р°РґР°РЅ РѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј С‡РёСЃР»РѕРј"},
+		{etype::wrong_type, "РЅРµСЃРѕРѕС‚РІРµС‚СЃС‚РІРёРµ С‚РёРїСѓ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°"}
 	};
 
 	const std::string TArrayException::getInfo() const
 	{
 		std::stringstream ss;
-		ss << "При выполнении функции \"" << m_source << "\"" << std::endl << "произошла ошибка : " << TArrayException::m_message.at(m_error) << std::endl;
-		if (!m_comment.empty()) ss << "комментарий к ошибке: " << m_comment << std::endl;
+		ss << "РџСЂРё РІС‹РїРѕР»РЅРµРЅРёРё С„СѓРЅРєС†РёРё \"" << m_source << "\"" << std::endl << "РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР° : " << TArrayException::m_message.at(m_error) << std::endl;
+		if (!m_comment.empty()) ss << "РєРѕРјРјРµРЅС‚Р°СЂРёР№ Рє РѕС€РёР±РєРµ: " << m_comment << std::endl;
 		return ss.str();
 	}
 
